@@ -1,5 +1,6 @@
 #include<iostream> // For using cout, cin and so on
 
+// Factorials
 int Factorial(int num) {
 	int factorial = 1;
 	for (int i = 1; i < num + 1; i++) {
@@ -8,12 +9,41 @@ int Factorial(int num) {
 	return factorial;
 }
 
+// Degrees
 int Degree(int firstNum, int secondNum) {
 	int degree = 1;
 	for (int i = 0; i < secondNum; i++) {
 		degree *= firstNum;
 	}
 	return degree;
+}
+
+// Fibonachi's nums
+void FibonachiNums(int num) {
+	int firstNum = 1; 
+	int secondNum = 0;
+	int counter = 0; // Counter for var
+
+	std::cout << firstNum << " "; // Cout first num
+
+	while (true) {
+		if (firstNum + secondNum <= num) {
+			if (counter % 2 == 0) {
+				std::cout << firstNum + secondNum << " ";
+				secondNum += firstNum;
+				counter++;
+			}
+			else {
+				std::cout << firstNum + secondNum << " ";
+				firstNum += secondNum;
+				counter++;
+			}
+		}
+		else {
+			std::cout << "\n";
+			break;
+		}
+	}
 }
 
 void main() {
@@ -37,9 +67,9 @@ void main() {
 
 		// On lines 23 - 25 i created var with expression
 		std::string expression;
-		std::cout << "Input expression (+, -, *, /, !, %, ^): "; 
+		std::cout << "Input expression (+, -, *, /, !, %, ^, `): "; 
 		std::cin >> std::ws >> firstNum >> action;
-		if (action != '!') {
+		if (action != '!' && action != '`') {
 			std::cin >> std::ws >> secondNum;
 		}
 
@@ -67,6 +97,9 @@ void main() {
 			break;
 		case '!':
 			std::cout << firstNum << "!" << " = " << Factorial(firstNum) << "\n";
+			break;
+		case '`':
+			FibonachiNums(firstNum);
 			break;
 		default:
 			break;
