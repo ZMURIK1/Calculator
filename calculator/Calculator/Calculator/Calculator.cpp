@@ -1,5 +1,21 @@
 #include<iostream> // For using cout, cin and so on
 
+int Factorial(int num) {
+	int factorial = 1;
+	for (int i = 1; i < num + 1; i++) {
+		factorial *= i;
+	}
+	return factorial;
+}
+
+int Degree(int firstNum, int secondNum) {
+	int degree = 1;
+	for (int i = 0; i < secondNum; i++) {
+		degree *= firstNum;
+	}
+	return degree;
+}
+
 void main() {
 	setlocale(LC_ALL, "Rus"); // For Russian language
 
@@ -21,9 +37,14 @@ void main() {
 
 		// On lines 23 - 25 i created var with expression
 		std::string expression;
-		std::cout << "Input expression: "; 
-		std::cin >> std::ws >> firstNum >> action >> secondNum;
+		std::cout << "Input expression (+, -, *, /, !, %, ^): "; 
+		std::cin >> std::ws >> firstNum >> action;
+		if (action != '!') {
+			std::cin >> std::ws >> secondNum;
+		}
 
+
+		// In switch are made calculations
 		switch (action)
 		{
 		case '+':
@@ -36,7 +57,16 @@ void main() {
 			std::cout << firstNum << " * " << secondNum << " = " << firstNum * secondNum << "\n";
 			break;
 		case '/':
-			std::cout << firstNum << " / " << secondNum << " = " << firstNum / secondNum << "\n";
+			std::cout << firstNum << " / " << secondNum << " = " << float(firstNum) / float(secondNum) << "\n";
+			break;
+		case '%':
+			std::cout << firstNum << " % " << secondNum << " = " << firstNum / secondNum << "\n";
+			break;
+		case '^':
+			std::cout << firstNum << " ^ " << secondNum << " = " << Degree(firstNum, secondNum) << "\n";
+			break;
+		case '!':
+			std::cout << firstNum << "!" << " = " << Factorial(firstNum) << "\n";
 			break;
 		default:
 			break;
